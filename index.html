@@ -1643,6 +1643,34 @@
       font-weight: 800;
       color: var(--text-primary);
     }
+
+    /* Mobile-first enhancements for SVG canvases, cards & diagrams (360px-420px viewport) */
+    @media (max-width: 640px) {
+      .container {
+        padding: 0.85rem 0.65rem 3rem;
+      }
+      .blueprint-card,
+      .front-schematic-card,
+      .managerial-grid-section {
+        padding: 0.75rem 0.5rem;
+        margin: 1rem 0;
+        border-radius: var(--radius-md);
+      }
+      .managerial-grid-chart-card {
+        padding: 0.5rem 0.35rem;
+      }
+      .blueprint-canvas-wrap,
+      .front-schematic-svg-wrap,
+      .grid-svg-container {
+        border-radius: var(--radius-sm);
+        padding: 2px;
+      }
+      .app-footer {
+        padding: 1.15rem 0.75rem;
+        font-size: 0.76rem;
+        line-height: 1.55;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2319,7 +2347,7 @@
   <!-- Footer -->
   <footer class="app-footer">
     <div class="container" style="padding-top: 0; padding-bottom: 0;">
-      Turno Crítico: El Factor Humano &bull; Simulador Pedagógico Interactivo &bull; Arquitectura 100% Offline
+      &laquo;El trabajo aleja de nosotros tres grandes males: el aburrimiento, el vicio y la necesidad... aunque a las tres de la ma&ntilde;ana nadie se acuerde de la virtud.&raquo; &mdash; Voltaire
     </div>
   </footer>
 
@@ -2334,7 +2362,7 @@
        ========================================================================== */
 
     function getBlueprintSvg() {
-      return `<svg viewBox="0 0 860 380" width="100%" height="auto" class="blueprint-svg" xmlns="http://www.w3.org/2000/svg">
+      return `<svg viewBox="0 0 860 440" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" class="blueprint-svg" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="bpGridSmall" width="15" height="15" patternUnits="userSpaceOnUse">
             <path d="M 15 0 L 0 0 0 15" fill="none" stroke="#C1B6A3" stroke-width="0.5" stroke-opacity="0.3" />
@@ -2347,167 +2375,177 @@
           </marker>
         </defs>
 
-        <rect width="860" height="380" fill="#EFE7DA" rx="8"/>
-        <rect width="860" height="380" fill="url(#bpGridSmall)" rx="8"/>
-        <rect width="860" height="380" fill="url(#bpGridLarge)" rx="8"/>
-        <rect x="10" y="10" width="840" height="360" fill="none" stroke="#C1B6A3" stroke-width="1.5" stroke-dasharray="6 4" rx="6"/>
+        <rect width="860" height="440" fill="#EFE7DA" rx="8"/>
+        <rect width="860" height="440" fill="url(#bpGridSmall)" rx="8"/>
+        <rect width="860" height="440" fill="url(#bpGridLarge)" rx="8"/>
+        <rect x="10" y="10" width="840" height="420" fill="none" stroke="#C1B6A3" stroke-width="1.5" stroke-dasharray="6 4" rx="6"/>
 
-        <g transform="translate(24, 32)">
-          <text x="0" y="0" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#2C2420" letter-spacing="1">PLANO TÉCNICO GENERAL // DISTRIBUCIÓN OPERATIVA DE PLANTA SIDEROSUR</text>
-          <text x="812" y="0" font-family="monospace, sans-serif" font-size="10" font-weight="600" fill="#786B62" text-anchor="end">SUPERFICIE: 4,800 m² | ESCALA 1:300 | SISTEMA: CAD-SID 4.2</text>
+        <!-- Header -->
+        <g transform="translate(24, 30)">
+          <text x="0" y="0" font-family="system-ui, sans-serif" font-size="11.5" font-weight="800" fill="#2C2420" letter-spacing="0.5">PLANO TÉCNICO GENERAL // DISTRIBUCIÓN OPERATIVA DE PLANTA SIDEROSUR</text>
+          <text x="812" y="0" font-family="monospace, sans-serif" font-size="9" font-weight="600" fill="#786B62" text-anchor="end">SUPERFICIE: 4,800 m² | ESCALA 1:300 | SISTEMA: CAD-SID 4.2</text>
           <line x1="0" y1="8" x2="812" y2="8" stroke="#C1B6A3" stroke-width="1"/>
         </g>
 
         <!-- ZONE 1: NAVE 2 -->
-        <g transform="translate(24, 52)">
-          <rect x="0" y="0" width="370" height="260" fill="#E1DACA" fill-opacity="0.6" stroke="#B3907A" stroke-width="1.5" rx="6"/>
-          <rect x="0" y="0" width="370" height="24" fill="#B3907A" fill-opacity="0.18" rx="6 6 0 0"/>
-          <text x="12" y="16" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#2C2420" letter-spacing="0.5">NAVE 2: CÉLULA DE TORNOS Y RECTIFICACIÓN MECÁNICA</text>
-          <text x="358" y="16" font-family="monospace, sans-serif" font-size="9" font-weight="700" fill="#786B62" text-anchor="end">6 PUESTOS</text>
+        <g transform="translate(24, 48)">
+          <rect x="0" y="0" width="380" height="316" fill="#E1DACA" fill-opacity="0.6" stroke="#B3907A" stroke-width="1.5" rx="6"/>
+          <rect x="0" y="0" width="380" height="24" fill="#B3907A" fill-opacity="0.18" rx="6 6 0 0"/>
+          <text x="12" y="16" font-family="system-ui, sans-serif" font-size="9.5" font-weight="800" fill="#2C2420" letter-spacing="0.3">NAVE 2: CÉLULA DE MECANIZADO</text>
+          <text x="368" y="16" font-family="monospace, sans-serif" font-size="8.5" font-weight="700" fill="#786B62" text-anchor="end">6 TORNOS + RECTIFICADORA</text>
 
           <!-- Tornos 1-3 -->
-          <g transform="translate(20, 36)">
-            <rect x="0" y="0" width="60" height="34" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
+          <g transform="translate(18, 36)">
+            <rect x="0" y="0" width="64" height="34" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
             <rect x="6" y="6" width="16" height="22" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1"/>
-            <circle cx="45" cy="17" r="8" fill="none" stroke="#786B62" stroke-width="1.2"/>
-            <text x="30" y="44" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">TORNO #1</text>
+            <circle cx="48" cy="17" r="7" fill="none" stroke="#786B62" stroke-width="1.2"/>
+            <text x="32" y="44" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">TORNO 1</text>
           </g>
           <g transform="translate(100, 36)">
-            <rect x="0" y="0" width="60" height="34" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
+            <rect x="0" y="0" width="64" height="34" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
             <rect x="6" y="6" width="16" height="22" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1"/>
-            <circle cx="45" cy="17" r="8" fill="none" stroke="#786B62" stroke-width="1.2"/>
-            <text x="30" y="44" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">TORNO #2</text>
+            <circle cx="48" cy="17" r="7" fill="none" stroke="#786B62" stroke-width="1.2"/>
+            <text x="32" y="44" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">TORNO 2</text>
           </g>
-          <g transform="translate(180, 36)">
-            <rect x="0" y="0" width="60" height="34" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
+          <g transform="translate(182, 36)">
+            <rect x="0" y="0" width="64" height="34" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
             <rect x="6" y="6" width="16" height="22" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1"/>
-            <circle cx="45" cy="17" r="8" fill="none" stroke="#786B62" stroke-width="1.2"/>
-            <text x="30" y="44" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">TORNO #3</text>
+            <circle cx="48" cy="17" r="7" fill="none" stroke="#786B62" stroke-width="1.2"/>
+            <text x="32" y="44" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">TORNO 3</text>
           </g>
 
           <!-- Tornos 4-6 -->
-          <g transform="translate(20, 95)">
-            <rect x="0" y="0" width="60" height="34" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
+          <g transform="translate(18, 96)">
+            <rect x="0" y="0" width="64" height="34" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
             <rect x="6" y="6" width="16" height="22" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1"/>
-            <circle cx="45" cy="17" r="8" fill="none" stroke="#786B62" stroke-width="1.2"/>
-            <text x="30" y="44" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">TORNO #4</text>
+            <circle cx="48" cy="17" r="7" fill="none" stroke="#786B62" stroke-width="1.2"/>
+            <text x="32" y="44" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">TORNO 4</text>
           </g>
-          <g transform="translate(100, 95)">
-            <rect x="0" y="0" width="60" height="34" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
+          <g transform="translate(100, 96)">
+            <rect x="0" y="0" width="64" height="34" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
             <rect x="6" y="6" width="16" height="22" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1"/>
-            <circle cx="45" cy="17" r="8" fill="none" stroke="#786B62" stroke-width="1.2"/>
-            <text x="30" y="44" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">TORNO #5</text>
+            <circle cx="48" cy="17" r="7" fill="none" stroke="#786B62" stroke-width="1.2"/>
+            <text x="32" y="44" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">TORNO 5</text>
           </g>
           <!-- Torno 6: Informal Core -->
-          <g transform="translate(180, 95)">
-            <circle cx="30" cy="17" r="32" fill="#B3907A" fill-opacity="0.14" stroke="#B3907A" stroke-width="1.5" stroke-dasharray="3 3"/>
-            <rect x="0" y="0" width="60" height="34" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.5" rx="3"/>
+          <g transform="translate(182, 94)">
+            <circle cx="32" cy="17" r="30" fill="#B3907A" fill-opacity="0.14" stroke="#B3907A" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <rect x="0" y="0" width="64" height="34" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.5" rx="3"/>
             <rect x="6" y="6" width="16" height="22" fill="#B3907A" fill-opacity="0.25" stroke="#B3907A" stroke-width="1"/>
-            <circle cx="45" cy="17" r="8" fill="none" stroke="#B3907A" stroke-width="1.5"/>
-            <text x="30" y="44" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#8C2D19" text-anchor="middle">TORNO #6 (CARLOS)</text>
-            <text x="30" y="54" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#B3907A" text-anchor="middle">LIDERAZGO INFORMAL</text>
+            <circle cx="48" cy="17" r="7" fill="none" stroke="#B3907A" stroke-width="1.5"/>
+            <text x="32" y="44" font-family="monospace, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19" text-anchor="middle">TORNO 6 (CARLOS)</text>
+            <text x="32" y="55" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#B3907A" text-anchor="middle">LÍDER INFORMAL</text>
           </g>
 
           <!-- Rectificadora #4 (Critical Node) -->
-          <g transform="translate(20, 165)">
-            <rect x="0" y="0" width="330" height="82" fill="#F5F5EB" stroke="#8C2D19" stroke-width="1.5" rx="4"/>
-            <circle cx="28" cy="41" r="16" fill="#8C2D19" fill-opacity="0.2">
-              <animate attributeName="r" values="10;20;10" dur="2s" repeatCount="indefinite"/>
+          <g transform="translate(18, 168)">
+            <rect x="0" y="0" width="344" height="136" fill="#F5F5EB" stroke="#8C2D19" stroke-width="1.5" rx="4"/>
+            <circle cx="28" cy="50" r="16" fill="#8C2D19" fill-opacity="0.2">
+              <animate attributeName="r" values="10;18;10" dur="2s" repeatCount="indefinite"/>
               <animate attributeName="fill-opacity" values="0.3;0.05;0.3" dur="2s" repeatCount="indefinite"/>
             </circle>
-            <circle cx="28" cy="41" r="6" fill="#8C2D19"/>
-            <circle cx="28" cy="41" r="2" fill="#FFFFFF"/>
-            <text x="56" y="26" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#8C2D19">RECTIFICADORA CILÍNDRICA #4 [PUNTO CRÍTICO 23:30]</text>
-            <text x="56" y="42" font-family="system-ui, sans-serif" font-size="8.5" font-weight="600" fill="#574C43">Alerta Mecánica: Vibración en husillo rotativo &bull; Temp: 84°C &bull; Cuello de botella</text>
-            <text x="56" y="58" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#786B62">Riesgo: Paralización de toda la línea de mecanizado por fricción térmica</text>
-            <rect x="250" y="50" width="70" height="20" fill="rgba(140, 45, 25, 0.12)" stroke="#8C2D19" stroke-width="1" rx="3"/>
-            <text x="285" y="63" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#8C2D19" text-anchor="middle">ALERTA ALTA</text>
+            <circle cx="28" cy="50" r="6" fill="#8C2D19"/>
+            <circle cx="28" cy="50" r="2" fill="#FFFFFF"/>
+            
+            <text x="56" y="24" font-family="system-ui, sans-serif" font-size="9.5" font-weight="800" fill="#8C2D19">RECTIFICADORA #4 [PUNTO CRÍTICO 23:30]</text>
+            <text x="56" y="42" font-family="system-ui, sans-serif" font-size="8.5" font-weight="600" fill="#574C43">Husillo con vibración severa &bull; Temp: 84°C</text>
+            <text x="56" y="58" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#574C43">Cuello de botella térmico en mecanizado</text>
+            <text x="56" y="74" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#786B62">Riesgo: Parada total de nave por dilatación</text>
+
+            <rect x="56" y="86" width="110" height="22" fill="rgba(140, 45, 25, 0.12)" stroke="#8C2D19" stroke-width="1" rx="3"/>
+            <text x="111" y="101" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#8C2D19" text-anchor="middle">ALERTA CRÍTICA</text>
           </g>
         </g>
 
         <!-- ZONE 2: METROLOGÍA -->
-        <g transform="translate(410, 52)">
-          <rect x="0" y="0" width="220" height="120" fill="#E1DACA" fill-opacity="0.6" stroke="#C1B6A3" stroke-width="1.5" rx="6"/>
-          <rect x="0" y="0" width="220" height="22" fill="#C1B6A3" fill-opacity="0.3" rx="6 6 0 0"/>
-          <text x="10" y="15" font-family="system-ui, sans-serif" font-size="9.5" font-weight="800" fill="#2C2420">CONTROL DE CALIDAD Y METROLOGÍA</text>
+        <g transform="translate(422, 48)">
+          <rect x="0" y="0" width="216" height="150" fill="#E1DACA" fill-opacity="0.6" stroke="#C1B6A3" stroke-width="1.5" rx="6"/>
+          <rect x="0" y="0" width="216" height="24" fill="#C1B6A3" fill-opacity="0.3" rx="6 6 0 0"/>
+          <text x="10" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#2C2420">CONTROL DE CALIDAD & METROLOGÍA</text>
           
-          <rect x="14" y="32" width="192" height="42" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1" rx="3"/>
-          <text x="22" y="48" font-family="monospace, sans-serif" font-size="8.5" font-weight="700" fill="#574C43">Mesa de Micrómetros & Rugosímetros</text>
-          <text x="22" y="63" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#8C2D19">Tolerancia: &plusmn;0.015 mm | Scrap actual: 18.4%</text>
+          <rect x="12" y="34" width="192" height="48" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1" rx="3"/>
+          <text x="20" y="50" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43">Mesa de Micrómetros & Rugosímetros</text>
+          <text x="20" y="66" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#8C2D19">Tol: &plusmn;0.015 mm | Scrap actual: 18.4%</text>
 
-          <rect x="14" y="82" width="192" height="26" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1" rx="3"/>
-          <text x="22" y="98" font-family="system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#786B62">Estándar: 2.0% Máx | Desviación acumulada</text>
+          <rect x="12" y="90" width="192" height="48" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1" rx="3"/>
+          <text x="20" y="108" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#786B62">Estándar: 2.0% Máx de merma</text>
+          <text x="20" y="122" font-family="system-ui, sans-serif" font-size="7.2" font-weight="600" fill="#574C43">Desviación acumulada por fatiga</text>
         </g>
 
         <!-- ZONE 3: ÁREA DE DESCANSO -->
-        <g transform="translate(410, 185)">
-          <rect x="0" y="0" width="220" height="127" fill="#E1DACA" fill-opacity="0.6" stroke="#C1B6A3" stroke-width="1.5" rx="6"/>
-          <rect x="0" y="0" width="220" height="22" fill="#C1B6A3" fill-opacity="0.3" rx="6 6 0 0"/>
-          <text x="10" y="15" font-family="system-ui, sans-serif" font-size="9.5" font-weight="800" fill="#2C2420">ÁREA DE DESCANSO & NÚCLEO SOCIAL</text>
+        <g transform="translate(422, 210)">
+          <rect x="0" y="0" width="216" height="154" fill="#E1DACA" fill-opacity="0.6" stroke="#C1B6A3" stroke-width="1.5" rx="6"/>
+          <rect x="0" y="0" width="216" height="24" fill="#C1B6A3" fill-opacity="0.3" rx="6 6 0 0"/>
+          <text x="10" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#2C2420">ÁREA DE DESCANSO & NÚCLEO SOCIAL</text>
           
-          <rect x="14" y="32" width="192" height="46" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1" rx="3"/>
-          <text x="22" y="48" font-family="system-ui, sans-serif" font-size="8.5" font-weight="700" fill="#2C2420">Punto de Encuentro de la Cuadrilla</text>
-          <text x="22" y="62" font-family="system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#574C43">Cafetera y banco de debate informal &bull; 02:00 hrs</text>
-          <text x="22" y="72" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#B3907A">Espacio de articulación y pertenencia social</text>
+          <rect x="12" y="32" width="192" height="54" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1" rx="3"/>
+          <text x="20" y="48" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#2C2420">Punto de Encuentro Informal</text>
+          <text x="20" y="62" font-family="system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#574C43">Cafetera y debate de cuadrilla (02:00)</text>
+          <text x="20" y="74" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#B3907A">Espacio de articulación obrera</text>
 
-          <rect x="14" y="86" width="192" height="28" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1" rx="3"/>
-          <text x="22" y="103" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#574C43">Oficina de Jefatura (Supervisión Formal)</text>
+          <rect x="12" y="94" width="192" height="46" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1" rx="3"/>
+          <text x="20" y="112" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#574C43">Oficina de Jefatura Formal</text>
+          <text x="20" y="126" font-family="system-ui, sans-serif" font-size="7.2" font-weight="600" fill="#786B62">Supervisión jerárquica aislada</text>
         </g>
 
         <!-- ZONE 4: BAHÍA DE CARGA -->
-        <g transform="translate(646, 52)">
-          <rect x="0" y="0" width="190" height="260" fill="#E1DACA" fill-opacity="0.6" stroke="#B3907A" stroke-width="1.5" rx="6"/>
-          <rect x="0" y="0" width="190" height="24" fill="#B3907A" fill-opacity="0.18" rx="6 6 0 0"/>
-          <text x="10" y="16" font-family="system-ui, sans-serif" font-size="9.5" font-weight="800" fill="#2C2420">BAHÍA DE CARGA #1</text>
-          <text x="180" y="16" font-family="monospace, sans-serif" font-size="8.5" font-weight="700" fill="#8C2D19" text-anchor="end">05:30 HRS</text>
+        <g transform="translate(654, 48)">
+          <rect x="0" y="0" width="182" height="316" fill="#E1DACA" fill-opacity="0.6" stroke="#B3907A" stroke-width="1.5" rx="6"/>
+          <rect x="0" y="0" width="182" height="24" fill="#B3907A" fill-opacity="0.18" rx="6 6 0 0"/>
+          <text x="10" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#2C2420">BAHÍA DE CARGA #1</text>
+          <text x="172" y="16" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#8C2D19" text-anchor="end">05:30</text>
 
           <!-- Truck Trailer Schematic Outline -->
-          <g transform="translate(14, 34)">
-            <rect x="0" y="0" width="162" height="110" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.2" rx="4"/>
-            <text x="81" y="18" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#2C2420" text-anchor="middle">CAMIÓN DE EXPORTACIÓN #1</text>
+          <g transform="translate(10, 34)">
+            <rect x="0" y="0" width="162" height="136" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.2" rx="4"/>
+            <text x="81" y="18" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#2C2420" text-anchor="middle">CAMIÓN DE EXPORTACIÓN</text>
             <line x1="8" y1="24" x2="154" y2="24" stroke="#C1B6A3" stroke-width="1"/>
 
-            <g transform="translate(12, 32)">
-              <rect x="0" y="0" width="30" height="30" fill="rgba(45, 74, 34, 0.15)" stroke="#2D4A22" stroke-width="1" rx="2"/>
-              <text x="15" y="18" font-family="monospace, sans-serif" font-size="7" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
-              <rect x="36" y="0" width="30" height="30" fill="rgba(45, 74, 34, 0.15)" stroke="#2D4A22" stroke-width="1" rx="2"/>
-              <text x="51" y="18" font-family="monospace, sans-serif" font-size="7" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
-              <rect x="72" y="0" width="30" height="30" fill="rgba(45, 74, 34, 0.15)" stroke="#2D4A22" stroke-width="1" rx="2"/>
-              <text x="87" y="18" font-family="monospace, sans-serif" font-size="7" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
-              <rect x="108" y="0" width="30" height="30" fill="rgba(140, 45, 25, 0.15)" stroke="#8C2D19" stroke-width="1.2" stroke-dasharray="2 2" rx="2"/>
-              <text x="123" y="18" font-family="monospace, sans-serif" font-size="6.5" font-weight="800" fill="#8C2D19" text-anchor="middle">-380</text>
+            <g transform="translate(8, 30)">
+              <rect x="0" y="0" width="32" height="30" fill="rgba(45, 74, 34, 0.15)" stroke="#2D4A22" stroke-width="1" rx="2"/>
+              <text x="16" y="19" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
+              <rect x="37" y="0" width="32" height="30" fill="rgba(45, 74, 34, 0.15)" stroke="#2D4A22" stroke-width="1" rx="2"/>
+              <text x="53" y="19" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
+              <rect x="74" y="0" width="32" height="30" fill="rgba(45, 74, 34, 0.15)" stroke="#2D4A22" stroke-width="1" rx="2"/>
+              <text x="90" y="19" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
+              <rect x="111" y="0" width="34" height="30" fill="rgba(140, 45, 25, 0.15)" stroke="#8C2D19" stroke-width="1.2" stroke-dasharray="2 2" rx="2"/>
+              <text x="128" y="19" font-family="monospace, sans-serif" font-size="7" font-weight="800" fill="#8C2D19" text-anchor="middle">-380</text>
             </g>
 
-            <text x="81" y="80" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#574C43" text-anchor="middle">4,620 / 5,000 Piezas Cargadas</text>
-            <text x="81" y="94" font-family="system-ui, sans-serif" font-size="7" font-weight="800" fill="#8C2D19" text-anchor="middle">Riesgo Multa: 25,000 USD</text>
+            <text x="81" y="80" font-family="system-ui, sans-serif" font-size="7.8" font-weight="700" fill="#574C43" text-anchor="middle">4,620 / 5,000 Cargadas</text>
+            <text x="81" y="96" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19" text-anchor="middle">Faltan 380 (-7.6%)</text>
+            <text x="81" y="112" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19" text-anchor="middle">Multa Riesgo: $25k</text>
           </g>
 
-          <g transform="translate(14, 154)">
-            <rect x="0" y="0" width="162" height="92" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1" rx="4"/>
-            <text x="10" y="18" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#2C2420">Rampa y Sellado de Cajas</text>
-            <text x="10" y="32" font-family="system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#574C43">Precinto de aduana: 05:30 hrs</text>
-            <text x="10" y="46" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#786B62">Tolerancia cero a demoras</text>
-            <rect x="10" y="56" width="142" height="24" fill="#EFE7DA" stroke="#B3907A" stroke-width="1" rx="3"/>
-            <text x="81" y="71" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#B3907A" text-anchor="middle">MUELLE CONECTADO</text>
+          <g transform="translate(10, 180)">
+            <rect x="0" y="0" width="162" height="124" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1" rx="4"/>
+            <text x="10" y="20" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#2C2420">Rampa y Precinto</text>
+            <text x="10" y="38" font-family="system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#574C43">Precinto de aduana: 05:30</text>
+            <text x="10" y="54" font-family="system-ui, sans-serif" font-size="7.2" font-weight="600" fill="#786B62">Tolerancia cero a demoras</text>
+            <rect x="10" y="68" width="142" height="26" fill="#EFE7DA" stroke="#B3907A" stroke-width="1" rx="3"/>
+            <text x="81" y="85" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#B3907A" text-anchor="middle">MUELLE CONECTADO</text>
           </g>
         </g>
 
         <!-- FLOW ARROWS -->
-        <path d="M 394 110 L 410 110" stroke="#786B62" stroke-width="1.5" stroke-dasharray="3 2" marker-end="url(#bpArrow)"/>
-        <path d="M 630 110 L 646 110" stroke="#786B62" stroke-width="1.5" stroke-dasharray="3 2" marker-end="url(#bpArrow)"/>
-        <path d="M 180 240 L 410 240" stroke="#B3907A" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#bpArrow)"/>
+        <path d="M 404 120 L 422 120" stroke="#786B62" stroke-width="1.5" stroke-dasharray="3 2" marker-end="url(#bpArrow)"/>
+        <path d="M 638 120 L 654 120" stroke="#786B62" stroke-width="1.5" stroke-dasharray="3 2" marker-end="url(#bpArrow)"/>
+        <path d="M 190 280 L 422 280" stroke="#B3907A" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#bpArrow)"/>
 
         <!-- FOOTER LEGEND -->
-        <g transform="translate(24, 324)">
-          <rect x="0" y="0" width="812" height="36" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1" rx="4"/>
-          <circle cx="16" cy="18" r="5" fill="#8C2D19"/>
-          <text x="28" y="22" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#2C2420">Punto Crítico de Alarma Mecánica</text>
-          <circle cx="210" cy="18" r="6" fill="none" stroke="#B3907A" stroke-width="1.5" stroke-dasharray="2 2"/>
-          <text x="224" y="22" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#2C2420">Núcleo Social & Liderazgo Informal</text>
-          <line x1="430" y1="18" x2="455" y2="18" stroke="#786B62" stroke-width="1.5" stroke-dasharray="3 2"/>
-          <text x="463" y="22" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#2C2420">Flujo Físico de Piezas en Proceso</text>
-          <rect x="640" y="11" width="14" height="14" fill="rgba(45, 74, 34, 0.2)" stroke="#2D4A22" stroke-width="1" rx="2"/>
-          <text x="662" y="22" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#2C2420">Muelle de Embarque Contractual</text>
+        <g transform="translate(24, 380)">
+          <rect x="0" y="0" width="812" height="40" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1" rx="4"/>
+          <circle cx="18" cy="20" r="5" fill="#8C2D19"/>
+          <text x="30" y="24" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#2C2420">Alarma Mecánica (Husillo)</text>
+          
+          <circle cx="230" cy="20" r="6" fill="none" stroke="#B3907A" stroke-width="1.5" stroke-dasharray="2 2"/>
+          <text x="244" y="24" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#2C2420">Liderazgo Informal (Café)</text>
+          
+          <line x1="450" y1="20" x2="475" y2="20" stroke="#786B62" stroke-width="1.5" stroke-dasharray="3 2"/>
+          <text x="483" y="24" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#2C2420">Flujo de Piezas</text>
+          
+          <rect x="635" y="13" width="14" height="14" fill="rgba(45, 74, 34, 0.2)" stroke="#2D4A22" stroke-width="1" rx="2"/>
+          <text x="655" y="24" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#2C2420">Muelle de Embarque</text>
         </g>
       </svg>`;
     }
@@ -2590,104 +2628,111 @@
     }
 
     function getFront1LayoutSvg() {
-      return `<svg viewBox="0 0 760 250" width="100%" height="auto" class="schematic-svg" xmlns="http://www.w3.org/2000/svg">
+      return `<svg viewBox="0 0 760 290" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" class="schematic-svg" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="f1Grid" width="16" height="16" patternUnits="userSpaceOnUse">
             <path d="M 16 0 L 0 0 0 16" fill="none" stroke="#C1B6A3" stroke-width="0.5" stroke-opacity="0.25"/>
           </pattern>
         </defs>
 
-        <rect width="760" height="250" fill="#EFE7DA" rx="8"/>
-        <rect width="760" height="250" fill="url(#f1Grid)" rx="8"/>
-        <rect x="8" y="8" width="744" height="234" fill="none" stroke="#C1B6A3" stroke-width="1.5" rx="6"/>
+        <rect width="760" height="290" fill="#EFE7DA" rx="8"/>
+        <rect width="760" height="290" fill="url(#f1Grid)" rx="8"/>
+        <rect x="8" y="8" width="744" height="274" fill="none" stroke="#C1B6A3" stroke-width="1.5" rx="6"/>
 
         <g transform="translate(20, 26)">
-          <text x="0" y="0" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#2C2420" letter-spacing="0.5">DISPOSICIÓN ESPACIAL // NAVE 2: LÍNEA DE TORNOS Y CORRILLOS INFORMALES</text>
+          <text x="0" y="0" font-family="system-ui, sans-serif" font-size="10.5" font-weight="800" fill="#2C2420" letter-spacing="0.4">DISPOSICIÓN ESPACIAL // NAVE 2: LÍNEA DE TORNOS Y CORRILLOS INFORMALES</text>
           <text x="720" y="0" font-family="monospace, sans-serif" font-size="9" font-weight="700" fill="#8C2D19" text-anchor="end">21:30 HRS &bull; LÍNEA DETENIDA</text>
           <line x1="0" y1="8" x2="720" y2="8" stroke="#C1B6A3" stroke-width="1"/>
         </g>
 
         <!-- Formal Supervisor Booth -->
-        <g transform="translate(30, 56)">
-          <rect x="0" y="0" width="130" height="134" fill="#F5F5EB" stroke="#786B62" stroke-width="1.5" rx="4"/>
-          <rect x="0" y="0" width="130" height="22" fill="#C1B6A3" fill-opacity="0.25" rx="4 4 0 0"/>
-          <text x="65" y="15" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#2C2420" text-anchor="middle">SUPERVISIÓN FORMAL</text>
-          <circle cx="65" cy="55" r="16" fill="#E1DACA" stroke="#786B62" stroke-width="1.2"/>
-          <text x="65" y="59" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#786B62" text-anchor="middle">CAPATAZ</text>
-          <text x="65" y="90" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#8C2D19" text-anchor="middle">Aislado / Desoído</text>
-          <text x="65" y="104" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#574C43" text-anchor="middle">Sin legitimidad real</text>
-          <text x="65" y="118" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#786B62" text-anchor="middle">ante la cuadrilla</text>
+        <g transform="translate(30, 48)">
+          <rect x="0" y="0" width="130" height="175" fill="#F5F5EB" stroke="#786B62" stroke-width="1.5" rx="4"/>
+          <rect x="0" y="0" width="130" height="24" fill="#C1B6A3" fill-opacity="0.25" rx="4 4 0 0"/>
+          <text x="65" y="16" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#2C2420" text-anchor="middle">SUPERVISIÓN FORMAL</text>
+          
+          <circle cx="65" cy="56" r="16" fill="#E1DACA" stroke="#786B62" stroke-width="1.2"/>
+          <text x="65" y="60" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#786B62" text-anchor="middle">CAPATAZ</text>
+          
+          <text x="65" y="96" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#8C2D19" text-anchor="middle">Aislado / Desoído</text>
+          <text x="65" y="112" font-family="system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#574C43" text-anchor="middle">Sin legitimidad real</text>
+          <text x="65" y="128" font-family="system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#786B62" text-anchor="middle">frente al grupo</text>
+          
+          <rect x="15" y="142" width="100" height="20" fill="rgba(140, 45, 25, 0.10)" stroke="#8C2D19" stroke-width="1" rx="3"/>
+          <text x="65" y="155" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#8C2D19" text-anchor="middle">RUPTURA MANDATO</text>
         </g>
 
         <!-- Lathe Line -->
-        <g transform="translate(180, 50)">
-          <rect x="0" y="0" width="530" height="150" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.5" rx="5"/>
-          <rect x="0" y="0" width="530" height="22" fill="#B3907A" fill-opacity="0.18" rx="5 5 0 0"/>
-          <text x="14" y="15" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420">BATERÍA DE TORNOS PARALELOS &bull; CÉLULAS INDIVIDUALES VS. RED INFORMAL</text>
+        <g transform="translate(180, 48)">
+          <rect x="0" y="0" width="540" height="175" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.5" rx="5"/>
+          <rect x="0" y="0" width="540" height="24" fill="#B3907A" fill-opacity="0.18" rx="5 5 0 0"/>
+          <text x="14" y="16" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420">BATERÍA DE TORNOS PARALELOS &bull; CÉLULAS INDIVIDUALES VS. RED INFORMAL</text>
 
-          <g transform="translate(20, 36)">
-            <rect x="0" y="0" width="56" height="40" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
-            <circle cx="38" cy="20" r="10" fill="none" stroke="#786B62" stroke-width="1"/>
-            <text x="28" y="52" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#574C43" text-anchor="middle">T-1</text>
-            <text x="28" y="62" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#8C2D19" text-anchor="middle">PARADO</text>
+          <g transform="translate(16, 38)">
+            <rect x="0" y="0" width="58" height="42" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
+            <circle cx="38" cy="21" r="10" fill="none" stroke="#786B62" stroke-width="1"/>
+            <text x="29" y="25" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">T-1</text>
+            <text x="29" y="58" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#8C2D19" text-anchor="middle">PARADO</text>
           </g>
-          <g transform="translate(92, 36)">
-            <rect x="0" y="0" width="56" height="40" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
-            <circle cx="38" cy="20" r="10" fill="none" stroke="#786B62" stroke-width="1"/>
-            <text x="28" y="52" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#574C43" text-anchor="middle">T-2</text>
-            <text x="28" y="62" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#8C2D19" text-anchor="middle">PARADO</text>
+          <g transform="translate(88, 38)">
+            <rect x="0" y="0" width="58" height="42" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
+            <circle cx="38" cy="21" r="10" fill="none" stroke="#786B62" stroke-width="1"/>
+            <text x="29" y="25" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">T-2</text>
+            <text x="29" y="58" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#8C2D19" text-anchor="middle">PARADO</text>
           </g>
-          <g transform="translate(164, 36)">
-            <rect x="0" y="0" width="56" height="40" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
-            <circle cx="38" cy="20" r="10" fill="none" stroke="#786B62" stroke-width="1"/>
-            <text x="28" y="52" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#574C43" text-anchor="middle">T-3</text>
-            <text x="28" y="62" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#8C2D19" text-anchor="middle">PARADO</text>
+          <g transform="translate(160, 38)">
+            <rect x="0" y="0" width="58" height="42" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
+            <circle cx="38" cy="21" r="10" fill="none" stroke="#786B62" stroke-width="1"/>
+            <text x="29" y="25" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">T-3</text>
+            <text x="29" y="58" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#8C2D19" text-anchor="middle">PARADO</text>
           </g>
-          <g transform="translate(236, 36)">
-            <rect x="0" y="0" width="56" height="40" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
-            <circle cx="38" cy="20" r="10" fill="none" stroke="#786B62" stroke-width="1"/>
-            <text x="28" y="52" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#574C43" text-anchor="middle">T-4</text>
-            <text x="28" y="62" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#8C2D19" text-anchor="middle">PARADO</text>
+          <g transform="translate(232, 38)">
+            <rect x="0" y="0" width="58" height="42" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
+            <circle cx="38" cy="21" r="10" fill="none" stroke="#786B62" stroke-width="1"/>
+            <text x="29" y="25" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">T-4</text>
+            <text x="29" y="58" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#8C2D19" text-anchor="middle">PARADO</text>
           </g>
-          <g transform="translate(308, 36)">
-            <rect x="0" y="0" width="56" height="40" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
-            <circle cx="38" cy="20" r="10" fill="none" stroke="#786B62" stroke-width="1"/>
-            <text x="28" y="52" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#574C43" text-anchor="middle">T-5</text>
-            <text x="28" y="62" font-family="system-ui, sans-serif" font-size="6.5" font-weight="600" fill="#8C2D19" text-anchor="middle">PARADO</text>
+          <g transform="translate(304, 38)">
+            <rect x="0" y="0" width="58" height="42" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1.2" rx="3"/>
+            <circle cx="38" cy="21" r="10" fill="none" stroke="#786B62" stroke-width="1"/>
+            <text x="29" y="25" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">T-5</text>
+            <text x="29" y="58" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#8C2D19" text-anchor="middle">PARADO</text>
           </g>
 
-          <!-- Torno 6: Informal Core -->
-          <g transform="translate(380, 24)">
-            <circle cx="65" cy="60" r="54" fill="#B3907A" fill-opacity="0.14" stroke="#B3907A" stroke-width="1.5" stroke-dasharray="4 3"/>
-            <rect x="35" y="24" width="60" height="42" fill="#F5F5EB" stroke="#B3907A" stroke-width="2" rx="3"/>
-            <circle cx="75" cy="45" r="11" fill="none" stroke="#B3907A" stroke-width="1.5"/>
-            <text x="65" y="78" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#8C2D19" text-anchor="middle">TORNO #6</text>
+          <!-- Torno 6: Informal Core (Non-colliding) -->
+          <g transform="translate(382, 28)">
+            <circle cx="70" cy="58" r="54" fill="#B3907A" fill-opacity="0.14" stroke="#B3907A" stroke-width="1.5" stroke-dasharray="4 3"/>
+            
+            <rect x="40" y="16" width="60" height="36" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.75" rx="3"/>
+            <circle cx="78" cy="34" r="10" fill="none" stroke="#B3907A" stroke-width="1.5"/>
+            <text x="56" y="38" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#8C2D19">T-6</text>
 
-            <circle cx="65" cy="42" r="10" fill="#B3907A"/>
-            <text x="65" y="46" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">DC</text>
+            <circle cx="70" cy="62" r="12" fill="#B3907A"/>
+            <text x="70" y="66" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#FFFFFF" text-anchor="middle">DC</text>
 
-            <circle cx="38" cy="36" r="5.5" fill="#2C2420"/>
-            <circle cx="92" cy="36" r="5.5" fill="#2C2420"/>
-            <circle cx="42" cy="68" r="5.5" fill="#2C2420"/>
-            <circle cx="88" cy="68" r="5.5" fill="#2C2420"/>
-            <circle cx="65" cy="74" r="5.5" fill="#2C2420"/>
+            <!-- Workers around coffee -->
+            <circle cx="44" cy="52" r="5" fill="#2C2420"/>
+            <circle cx="96" cy="52" r="5" fill="#2C2420"/>
+            <circle cx="46" cy="74" r="5" fill="#2C2420"/>
+            <circle cx="94" cy="74" r="5" fill="#2C2420"/>
 
-            <rect x="22" y="50" width="10" height="12" fill="#8C2D19" rx="2"/>
-            <text x="27" y="46" font-family="system-ui, sans-serif" font-size="6.5" font-weight="700" fill="#8C2D19">CAFÉ</text>
-            <text x="65" y="100" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#2C2420" text-anchor="middle">NÚCLEO INFORMAL</text>
-            <text x="65" y="112" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#574C43" text-anchor="middle">Don Carlos & 5 Torneros</text>
+            <rect x="18" y="56" width="18" height="14" fill="#8C2D19" rx="2"/>
+            <text x="27" y="66" font-family="system-ui, sans-serif" font-size="6" font-weight="800" fill="#FFFFFF" text-anchor="middle">CAFÉ</text>
+
+            <text x="70" y="122" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420" text-anchor="middle">NÚCLEO INFORMAL</text>
+            <text x="70" y="136" font-family="system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#574C43" text-anchor="middle">Don Carlos y 5 Torneros</text>
           </g>
         </g>
 
-        <g transform="translate(30, 212)">
-          <text x="0" y="14" font-family="system-ui, sans-serif" font-size="8.5" font-weight="700" fill="#2C2420">EJE TEÓRICO HAWTHORNE:</text>
-          <text x="140" y="14" font-family="system-ui, sans-serif" font-size="8.5" font-weight="600" fill="#574C43">El poder formal no reside en la jefatura si el grupo informal decide retener la producción en solidaridad gremial.</text>
+        <g transform="translate(30, 246)">
+          <text x="0" y="14" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420">EJE TEÓRICO HAWTHORNE:</text>
+          <text x="145" y="14" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#574C43">El poder formal no reside en la jefatura si el grupo informal decide retener la producción en solidaridad gremial.</text>
         </g>
       </svg>`;
     }
 
     function getFront2CutawaySvg() {
-      return `<svg viewBox="0 0 760 270" width="100%" height="auto" class="schematic-svg" xmlns="http://www.w3.org/2000/svg">
+      return `<svg viewBox="0 0 760 290" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" class="schematic-svg" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="cutGrid" width="16" height="16" patternUnits="userSpaceOnUse">
             <path d="M 16 0 L 0 0 0 16" fill="none" stroke="#C1B6A3" stroke-width="0.5" stroke-opacity="0.25"/>
@@ -2700,49 +2745,49 @@
           </marker>
         </defs>
 
-        <rect width="760" height="270" fill="#EFE7DA" rx="8"/>
-        <rect width="760" height="270" fill="url(#cutGrid)" rx="8"/>
-        <rect x="8" y="8" width="744" height="254" fill="none" stroke="#C1B6A3" stroke-width="1.5" rx="6"/>
+        <rect width="760" height="290" fill="#EFE7DA" rx="8"/>
+        <rect width="760" height="290" fill="url(#cutGrid)" rx="8"/>
+        <rect x="8" y="8" width="744" height="274" fill="none" stroke="#C1B6A3" stroke-width="1.5" rx="6"/>
 
         <g transform="translate(20, 26)">
-          <text x="0" y="0" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#2C2420" letter-spacing="0.5">CORTE TÉCNICO ESQUEMÁTICO // RECTIFICADORA CILÍNDRICA KELLENBERGER #4</text>
-          <text x="720" y="0" font-family="monospace, sans-serif" font-size="9" font-weight="700" fill="#8C2D19" text-anchor="end">ESTADO: RECALENTAMIENTO CRÍTICO (84°C)</text>
+          <text x="0" y="0" font-family="system-ui, sans-serif" font-size="10.5" font-weight="800" fill="#2C2420" letter-spacing="0.4">CORTE TÉCNICO ESQUEMÁTICO // RECTIFICADORA CILÍNDRICA KELLENBERGER #4</text>
+          <text x="720" y="0" font-family="monospace, sans-serif" font-size="8.5" font-weight="700" fill="#8C2D19" text-anchor="end">ESTADO: RECALENTAMIENTO CRÍTICO (84°C)</text>
           <line x1="0" y1="8" x2="720" y2="8" stroke="#C1B6A3" stroke-width="1"/>
         </g>
 
         <!-- Base -->
-        <g transform="translate(40, 195)">
-          <rect x="0" y="0" width="680" height="42" fill="#E1DACA" stroke="#2C2420" stroke-width="1.5" rx="3"/>
+        <g transform="translate(40, 210)">
+          <rect x="0" y="0" width="680" height="38" fill="#E1DACA" stroke="#2C2420" stroke-width="1.5" rx="3"/>
           <line x1="40" y1="8" x2="640" y2="8" stroke="#786B62" stroke-width="1.2"/>
           <line x1="40" y1="18" x2="640" y2="18" stroke="#C1B6A3" stroke-width="1" stroke-dasharray="8 4"/>
-          <text x="340" y="32" font-family="monospace, sans-serif" font-size="8.5" font-weight="700" fill="#574C43" text-anchor="middle">BANCADA RIGIDA DE FUNDICIÓN &bull; GUÍAS PRISMÁTICAS RECTIFICADAS</text>
+          <text x="340" y="28" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">BANCADA RÍGIDA DE FUNDICIÓN &bull; GUÍAS PRISMÁTICAS RECTIFICADAS</text>
         </g>
 
         <!-- Spindle Housing -->
-        <g transform="translate(60, 52)">
-          <rect x="0" y="20" width="190" height="122" fill="#F5F5EB" stroke="#2C2420" stroke-width="1.75" rx="4"/>
-          <text x="95" y="36" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#2C2420" text-anchor="middle">[1] CABEZAL PORTAMUELA</text>
-          <text x="95" y="48" font-family="monospace, sans-serif" font-size="7.5" font-weight="600" fill="#786B62" text-anchor="middle">RODAMIENTOS DE PRECISIÓN</text>
+        <g transform="translate(55, 48)">
+          <rect x="0" y="20" width="190" height="130" fill="#F5F5EB" stroke="#2C2420" stroke-width="1.75" rx="4"/>
+          <text x="95" y="38" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#2C2420" text-anchor="middle">[1] CABEZAL PORTAMUELA</text>
+          <text x="95" y="52" font-family="monospace, sans-serif" font-size="7.5" font-weight="600" fill="#786B62" text-anchor="middle">RODAMIENTOS DE PRECISIÓN</text>
 
-          <rect x="30" y="68" width="180" height="24" fill="#E1DACA" stroke="#2C2420" stroke-width="1.5"/>
-          <line x1="30" y1="80" x2="210" y2="80" stroke="#B3907A" stroke-width="1.2" stroke-dasharray="4 2"/>
+          <rect x="30" y="70" width="180" height="24" fill="#E1DACA" stroke="#2C2420" stroke-width="1.5"/>
+          <line x1="30" y1="82" x2="210" y2="82" stroke="#B3907A" stroke-width="1.2" stroke-dasharray="4 2"/>
 
-          <rect x="55" y="58" width="22" height="44" fill="#C1B6A3" stroke="#2C2420" stroke-width="1.2"/>
-          <rect x="140" y="58" width="22" height="44" fill="#8C2D19" fill-opacity="0.25" stroke="#8C2D19" stroke-width="1.5"/>
-          <circle cx="151" cy="80" r="14" fill="#8C2D19" fill-opacity="0.25">
+          <rect x="55" y="60" width="22" height="44" fill="#C1B6A3" stroke="#2C2420" stroke-width="1.2"/>
+          <rect x="140" y="60" width="22" height="44" fill="#8C2D19" fill-opacity="0.25" stroke="#8C2D19" stroke-width="1.5"/>
+          <circle cx="151" cy="82" r="14" fill="#8C2D19" fill-opacity="0.25">
             <animate attributeName="r" values="8;18;8" dur="1.8s" repeatCount="indefinite"/>
             <animate attributeName="fill-opacity" values="0.4;0.1;0.4" dur="1.8s" repeatCount="indefinite"/>
           </circle>
-          <circle cx="151" cy="80" r="4" fill="#8C2D19"/>
+          <circle cx="151" cy="82" r="4" fill="#8C2D19"/>
 
-          <g transform="translate(90, 112)">
-            <rect x="0" y="0" width="90" height="22" fill="#F5F5EB" stroke="#8C2D19" stroke-width="1.2" rx="3"/>
-            <text x="45" y="14" font-family="monospace, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19" text-anchor="middle">VIB: 4.8 mm/s [ALTO]</text>
+          <g transform="translate(75, 116)">
+            <rect x="0" y="0" width="120" height="22" fill="#F5F5EB" stroke="#8C2D19" stroke-width="1.2" rx="3"/>
+            <text x="60" y="15" font-family="monospace, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19" text-anchor="middle">VIB: 4.8 mm/s [ALTO]</text>
           </g>
         </g>
 
         <!-- Grinding Wheel -->
-        <g transform="translate(250, 60)">
+        <g transform="translate(255, 54)">
           <path d="M 0 0 C 45 -15 90 20 90 80 C 90 135 45 150 0 140 Z" fill="#E1DACA" fill-opacity="0.5" stroke="#2C2420" stroke-width="1.5"/>
           <circle cx="20" cy="72" r="54" fill="#B3907A" fill-opacity="0.4" stroke="#2C2420" stroke-width="2"/>
           <circle cx="20" cy="72" r="24" fill="#F5F5EB" stroke="#2C2420" stroke-width="1.5"/>
@@ -2756,15 +2801,16 @@
           <circle cx="37" cy="42" r="1.5" fill="#8C2D19"/>
           <circle cx="39" cy="50" r="1" fill="#8C2D19"/>
 
-          <g transform="translate(-40, -18)">
-            <rect x="0" y="0" width="150" height="20" fill="#F5F5EB" stroke="#8C2D19" stroke-width="1.2" rx="3"/>
-            <text x="75" y="13" font-family="system-ui, sans-serif" font-size="7" font-weight="800" fill="#8C2D19" text-anchor="middle">[3] BOQUILLA OBSTRUIDA POR VIRUTA</text>
-            <line x1="75" y1="20" x2="40" y2="46" stroke="#8C2D19" stroke-width="1.2" stroke-dasharray="2 2" marker-end="url(#alertArr)"/>
+          <!-- Obstruction Callout: Clean Non-colliding Position -->
+          <g transform="translate(0, -18)">
+            <rect x="0" y="0" width="168" height="22" fill="#F5F5EB" stroke="#8C2D19" stroke-width="1.2" rx="3"/>
+            <text x="84" y="15" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19" text-anchor="middle">[3] BOQUILLA REFRIGERANTE OBSTRUIDA</text>
+            <line x1="84" y1="22" x2="40" y2="46" stroke="#8C2D19" stroke-width="1.2" stroke-dasharray="2 2" marker-end="url(#alertArr)"/>
           </g>
         </g>
 
         <!-- Workpiece & Tailstock -->
-        <g transform="translate(325, 110)">
+        <g transform="translate(330, 116)">
           <line x1="-3" y1="22" x2="3" y2="22" stroke="#8C2D19" stroke-width="2"/>
           <circle cx="0" cy="22" r="3" fill="#8C2D19"/>
 
@@ -2772,187 +2818,212 @@
           <rect x="0" y="10" width="90" height="24" fill="#E1DACA" stroke="#786B62" stroke-width="1"/>
           <line x1="0" y1="22" x2="220" y2="22" stroke="#C1B6A3" stroke-width="1" stroke-dasharray="4 2"/>
 
-          <line x1="0" y1="42" x2="220" y2="42" stroke="#786B62" stroke-width="1" marker-start="url(#cutArr)" marker-end="url(#cutArr)"/>
-          <text x="110" y="54" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#2C2420" text-anchor="middle">[4] EJE &Oslash; 42.000 mm &plusmn; 0.012 mm</text>
+          <line x1="0" y1="44" x2="220" y2="44" stroke="#786B62" stroke-width="1" marker-start="url(#cutArr)" marker-end="url(#cutArr)"/>
+          <text x="110" y="56" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#2C2420" text-anchor="middle">[4] EJE &Oslash; 42.000 mm &plusmn; 0.012 mm</text>
 
           <g transform="translate(220, -5)">
             <polygon points="0 27, 25 15, 25 39" fill="#C1B6A3" stroke="#2C2420" stroke-width="1.5"/>
-            <rect x="25" y="0" width="80" height="54" fill="#F5F5EB" stroke="#2C2420" stroke-width="1.5" rx="3"/>
-            <text x="65" y="32" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">CONTRAPUNTO</text>
+            <rect x="25" y="0" width="84" height="54" fill="#F5F5EB" stroke="#2C2420" stroke-width="1.5" rx="3"/>
+            <text x="67" y="32" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#574C43" text-anchor="middle">CONTRAPUNTO</text>
           </g>
         </g>
 
-        <g transform="translate(40, 240)">
-          <text x="0" y="14" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#2C2420">DIAGNÓSTICO TÉCNICO:</text>
-          <text x="110" y="14" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#574C43">Fricción térmica en husillo por flujo insuficiente de refrigerante. Riesgo inminente de rotura de rodamientos.</text>
+        <g transform="translate(40, 260)">
+          <text x="0" y="12" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420">DIAGNÓSTICO TÉCNICO:</text>
+          <text x="135" y="12" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#574C43">Fricción térmica en husillo por flujo insuficiente de refrigerante. Riesgo inminente de rotura de rodamientos.</text>
         </g>
       </svg>`;
     }
 
     function getFront3BushingSvg() {
-      return `<svg viewBox="0 0 760 250" width="100%" height="auto" class="schematic-svg" xmlns="http://www.w3.org/2000/svg">
+      return `<svg viewBox="0 0 760 290" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" class="schematic-svg" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="f3Grid" width="16" height="16" patternUnits="userSpaceOnUse">
             <path d="M 16 0 L 0 0 0 16" fill="none" stroke="#C1B6A3" stroke-width="0.5" stroke-opacity="0.25"/>
           </pattern>
         </defs>
 
-        <rect width="760" height="250" fill="#EFE7DA" rx="8"/>
-        <rect width="760" height="250" fill="url(#f3Grid)" rx="8"/>
-        <rect x="8" y="8" width="744" height="234" fill="none" stroke="#C1B6A3" stroke-width="1.5" rx="6"/>
+        <rect width="760" height="290" fill="#EFE7DA" rx="8"/>
+        <rect width="760" height="290" fill="url(#f3Grid)" rx="8"/>
+        <rect x="8" y="8" width="744" height="274" fill="none" stroke="#C1B6A3" stroke-width="1.5" rx="6"/>
 
+        <!-- Header: No collision with status badge -->
         <g transform="translate(20, 26)">
-          <text x="0" y="0" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#2C2420" letter-spacing="0.5">METROLOGÍA & ANÁLISIS DE FALLA // CASQUILLO DE BRONCE &Oslash;45mm &bull; FATIGA DE MADRUGADA</text>
-          <text x="720" y="0" font-family="monospace, sans-serif" font-size="9" font-weight="700" fill="#8C2D19" text-anchor="end">02:00 HRS &bull; RECHAZOS POR REBABA</text>
+          <text x="0" y="0" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#2C2420" letter-spacing="0.4">METROLOGÍA Y ANÁLISIS DE FALLA // CASQUILLO DE BRONCE &Oslash;45mm</text>
+          <text x="720" y="0" font-family="monospace, sans-serif" font-size="8.5" font-weight="700" fill="#8C2D19" text-anchor="end">02:00 HRS &bull; RECHAZOS POR REBABA</text>
           <line x1="0" y1="8" x2="720" y2="8" stroke="#C1B6A3" stroke-width="1"/>
         </g>
 
-        <!-- Left: Cross section -->
-        <g transform="translate(40, 52)">
-          <rect x="0" y="0" width="310" height="145" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.5" rx="4"/>
-          <text x="155" y="20" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420" text-anchor="middle">CASQUILLO DE BRONCE FOSFORADO SAE-660</text>
+        <!-- Left: Cross section with clear non-colliding dimension badge -->
+        <g transform="translate(35, 48)">
+          <rect x="0" y="0" width="320" height="175" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.5" rx="4"/>
+          <text x="160" y="22" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420" text-anchor="middle">CASQUILLO DE BRONCE FOSFORADO SAE-660</text>
 
-          <g transform="translate(55, 36)">
-            <rect x="0" y="0" width="200" height="16" fill="#B3907A" fill-opacity="0.3" stroke="#2C2420" stroke-width="1.5"/>
-            <rect x="0" y="56" width="200" height="16" fill="#B3907A" fill-opacity="0.3" stroke="#2C2420" stroke-width="1.5"/>
-            <line x1="0" y1="36" x2="200" y2="36" stroke="#786B62" stroke-width="1" stroke-dasharray="6 3"/>
+          <g transform="translate(50, 40)">
+            <rect x="0" y="0" width="220" height="18" fill="#B3907A" fill-opacity="0.3" stroke="#2C2420" stroke-width="1.5"/>
+            <rect x="0" y="62" width="220" height="18" fill="#B3907A" fill-opacity="0.3" stroke="#2C2420" stroke-width="1.5"/>
+            
+            <!-- Axis lines with break for dimension callout -->
+            <line x1="0" y1="40" x2="35" y2="40" stroke="#786B62" stroke-width="1" stroke-dasharray="6 3"/>
+            <line x1="185" y1="40" x2="220" y2="40" stroke="#786B62" stroke-width="1" stroke-dasharray="6 3"/>
 
-            <text x="100" y="40" font-family="monospace, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420" text-anchor="middle">&Oslash; 45.000 mm +0.015 / -0.000</text>
+            <!-- Dimension callout pill: protected from lines -->
+            <rect x="36" y="27" width="148" height="26" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.2" rx="3"/>
+            <text x="110" y="44" font-family="monospace, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420" text-anchor="middle">&Oslash; 45.000 mm (+0.015 / 0.000)</text>
 
-            <path d="M 200 0 L 204 -4 L 202 4 L 205 8 L 201 16" stroke="#8C2D19" stroke-width="2" fill="none"/>
-            <circle cx="203" cy="8" r="10" fill="rgba(140, 45, 25, 0.15)" stroke="#8C2D19" stroke-width="1" stroke-dasharray="2 2"/>
-            <text x="100" y="90" font-family="system-ui, sans-serif" font-size="7.5" font-weight="700" fill="#8C2D19" text-anchor="middle">[!] REBABA CORTANTE POR VIBRACIÓN DE CARRO</text>
+            <!-- Burr defect indicator -->
+            <path d="M 220 0 L 226 -4 L 223 5 L 227 10 L 221 18" stroke="#8C2D19" stroke-width="2" fill="none"/>
+            <circle cx="224" cy="9" r="10" fill="rgba(140, 45, 25, 0.15)" stroke="#8C2D19" stroke-width="1" stroke-dasharray="2 2"/>
+            
+            <!-- Defect banner below -->
+            <rect x="15" y="88" width="190" height="20" fill="rgba(140, 45, 25, 0.10)" stroke="#8C2D19" stroke-width="1" rx="3"/>
+            <text x="110" y="102" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19" text-anchor="middle">[!] REBABA POR VIBRACIÓN DE CARRO</text>
           </g>
         </g>
 
         <!-- Right: Resonance waveform -->
-        <g transform="translate(370, 52)">
-          <rect x="0" y="0" width="350" height="145" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1.5" rx="4"/>
-          <text x="175" y="20" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420" text-anchor="middle">ORÍGEN FÍSICO: VIBRACIÓN ARMÓNICA (EXTRACTOR #2)</text>
+        <g transform="translate(375, 48)">
+          <rect x="0" y="0" width="350" height="175" fill="#F5F5EB" stroke="#C1B6A3" stroke-width="1.5" rx="4"/>
+          <text x="175" y="22" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420" text-anchor="middle">ORIGEN FÍSICO: VIBRACIÓN ARMÓNICA (EXTRACTOR #2)</text>
 
-          <g transform="translate(20, 36)">
-            <rect x="0" y="0" width="310" height="50" fill="#EFE7DA" stroke="#C1B6A3" stroke-width="1" rx="3"/>
-            <path d="M 10 25 Q 30 5, 50 25 T 90 25 T 130 25 T 170 25 T 210 25 T 250 25 T 290 25" fill="none" stroke="#8C2D19" stroke-width="2"/>
-            <line x1="10" y1="25" x2="300" y2="25" stroke="#786B62" stroke-width="1" stroke-dasharray="4 2"/>
-            <text x="155" y="62" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#574C43" text-anchor="middle">FRECUENCIA RESONANTE: 48 Hz TRANSMITIDA POR VIGA</text>
+          <g transform="translate(18, 36)">
+            <rect x="0" y="0" width="314" height="58" fill="#EFE7DA" stroke="#C1B6A3" stroke-width="1" rx="3"/>
+            <path d="M 10 26 Q 30 6, 50 26 T 90 26 T 130 26 T 170 26 T 210 26 T 250 26 T 290 26" fill="none" stroke="#8C2D19" stroke-width="2"/>
+            <line x1="10" y1="26" x2="304" y2="26" stroke="#786B62" stroke-width="1" stroke-dasharray="4 2"/>
+            
+            <rect x="35" y="38" width="244" height="16" fill="#F5F5EB" fill-opacity="0.92" rx="2"/>
+            <text x="157" y="50" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#574C43" text-anchor="middle">FRECUENCIA RESONANTE: 48 Hz POR VIGA</text>
           </g>
 
-          <g transform="translate(20, 102)">
-            <rect x="0" y="0" width="310" height="32" fill="#E1DACA" stroke="#B3907A" stroke-width="1" rx="3"/>
-            <text x="155" y="14" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#2C2420" text-anchor="middle">El ojo clínico del veterano vs. La ceguera punitiva</text>
-            <text x="155" y="25" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#574C43" text-anchor="middle">Don Carlos identificó la tuerca suelta en el descanso de café.</text>
+          <g transform="translate(18, 104)">
+            <rect x="0" y="0" width="314" height="54" fill="#E1DACA" stroke="#B3907A" stroke-width="1" rx="3"/>
+            <text x="157" y="20" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#2C2420" text-anchor="middle">El ojo clínico del veterano vs. La ceguera punitiva</text>
+            <text x="157" y="36" font-family="system-ui, sans-serif" font-size="7.2" font-weight="600" fill="#574C43" text-anchor="middle">Don Carlos detectó la tuerca suelta durante la pausa del café.</text>
           </g>
         </g>
 
-        <g transform="translate(40, 212)">
-          <text x="0" y="14" font-family="system-ui, sans-serif" font-size="8.5" font-weight="700" fill="#2C2420">LECCIÓN HAWTHORNE:</text>
-          <text x="130" y="14" font-family="system-ui, sans-serif" font-size="8.5" font-weight="600" fill="#574C43">El cansancio de las 02:00 no se resuelve con amenazas. La empatía y el confort psicológico activan la inteligencia colectiva.</text>
+        <!-- Hawthorne Footnote: Perfectly wrapped within 760px -->
+        <g transform="translate(35, 238)">
+          <text x="0" y="14" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420">LECCIÓN HAWTHORNE:</text>
+          <text x="140" y="14" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#574C43">El cansancio de las 02:00 no se resuelve con amenazas ni supervisión punitiva.</text>
+          <text x="140" y="28" font-family="system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#786B62">La empatía, el descanso y el confort psicológico activan la inteligencia colectiva del taller.</text>
         </g>
       </svg>`;
     }
 
     function getFront4DispatchSvg() {
-      return `<svg viewBox="0 0 760 250" width="100%" height="auto" class="schematic-svg" xmlns="http://www.w3.org/2000/svg">
+      return `<svg viewBox="0 0 760 290" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" class="schematic-svg" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="dockGrid" width="16" height="16" patternUnits="userSpaceOnUse">
             <path d="M 16 0 L 0 0 0 16" fill="none" stroke="#C1B6A3" stroke-width="0.5" stroke-opacity="0.25"/>
           </pattern>
         </defs>
 
-        <rect width="760" height="250" fill="#EFE7DA" rx="8"/>
-        <rect width="760" height="250" fill="url(#dockGrid)" rx="8"/>
-        <rect x="8" y="8" width="744" height="234" fill="none" stroke="#C1B6A3" stroke-width="1.5" rx="6"/>
+        <rect width="760" height="290" fill="#EFE7DA" rx="8"/>
+        <rect width="760" height="290" fill="url(#dockGrid)" rx="8"/>
+        <rect x="8" y="8" width="744" height="274" fill="none" stroke="#C1B6A3" stroke-width="1.5" rx="6"/>
 
         <g transform="translate(20, 26)">
-          <text x="0" y="0" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#2C2420" letter-spacing="0.5">TELEMETRÍA DE ESTIBA // MUELLE DE EMBARQUE #1 &bull; TRANSPORTE DE EXPORTACIÓN</text>
-          <text x="720" y="0" font-family="monospace, sans-serif" font-size="9" font-weight="700" fill="#8C2D19" text-anchor="end">VENTANA LÍMITE: 05:30 HRS &bull; FALTANTE: 380 PIEZAS</text>
+          <text x="0" y="0" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#2C2420" letter-spacing="0.4">TELEMETRÍA DE ESTIBA // MUELLE DE EMBARQUE #1</text>
+          <text x="720" y="0" font-family="monospace, sans-serif" font-size="8.5" font-weight="700" fill="#8C2D19" text-anchor="end">LÍMITE: 05:30 HRS &bull; FALTANTE: 380 PZAS</text>
           <line x1="0" y1="8" x2="720" y2="8" stroke="#C1B6A3" stroke-width="1"/>
         </g>
 
         <!-- Trailer -->
         <g transform="translate(30, 48)">
-          <rect x="0" y="10" width="460" height="130" fill="#F5F5EB" stroke="#2C2420" stroke-width="2" rx="4"/>
-          <rect x="0" y="10" width="460" height="16" fill="#B3907A" fill-opacity="0.2" rx="4 4 0 0"/>
-          <text x="14" y="22" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#2C2420">CONTENEDOR 40 PIES &bull; CONTROL TÉRMICO Y ANTICORROSIÓN</text>
-          <text x="446" y="22" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#786B62" text-anchor="end">CAPACIDAD: 5,000 PZAS</text>
+          <rect x="0" y="10" width="470" height="154" fill="#F5F5EB" stroke="#2C2420" stroke-width="2" rx="4"/>
+          <rect x="0" y="10" width="470" height="20" fill="#B3907A" fill-opacity="0.2" rx="4 4 0 0"/>
+          <text x="14" y="24" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#2C2420">CONTENEDOR 40 PIES &bull; CONTROL TÉRMICO Y ANTICORROSIÓN</text>
+          <text x="456" y="24" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#786B62" text-anchor="end">CAPACIDAD: 5,000 PZAS</text>
 
-          <g transform="translate(14, 34)">
-            <rect x="0" y="0" width="38" height="42" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <text x="19" y="24" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P1</text>
-            <rect x="44" y="0" width="38" height="42" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <text x="63" y="24" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P2</text>
-            <rect x="88" y="0" width="38" height="42" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <text x="107" y="24" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P3</text>
-            <rect x="132" y="0" width="38" height="42" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <text x="151" y="24" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P4</text>
-            <rect x="176" y="0" width="38" height="42" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <text x="195" y="24" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P5</text>
-            <rect x="220" y="0" width="38" height="42" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <text x="239" y="24" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P6</text>
-            <rect x="264" y="0" width="38" height="42" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <text x="283" y="24" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P7</text>
-            <rect x="308" y="0" width="38" height="42" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <text x="327" y="24" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P8</text>
-            <rect x="352" y="0" width="38" height="42" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <text x="371" y="24" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P9</text>
+          <g transform="translate(12, 38)">
+            <!-- Top pallets P1 - P9 -->
+            <rect x="0" y="0" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="18" y="21" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P1</text>
+            <rect x="42" y="0" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="60" y="21" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P2</text>
+            <rect x="84" y="0" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="102" y="21" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P3</text>
+            <rect x="126" y="0" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="144" y="21" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P4</text>
+            <rect x="168" y="0" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="186" y="21" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P5</text>
+            <rect x="210" y="0" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="228" y="21" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P6</text>
+            <rect x="252" y="0" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="270" y="21" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P7</text>
+            <rect x="294" y="0" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="312" y="21" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P8</text>
+            <rect x="336" y="0" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="354" y="21" font-family="monospace, sans-serif" font-size="8" font-weight="800" fill="#2D4A22" text-anchor="middle">P9</text>
 
             <!-- Bay 10: Critical Void -->
-            <rect x="396" y="0" width="38" height="96" fill="rgba(140, 45, 25, 0.14)" stroke="#8C2D19" stroke-width="2" stroke-dasharray="3 3" rx="2"/>
-            <text x="415" y="44" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19" text-anchor="middle">VACÍO</text>
-            <text x="415" y="60" font-family="monospace, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19" text-anchor="middle">-380</text>
-            <text x="415" y="74" font-family="system-ui, sans-serif" font-size="6.5" font-weight="700" fill="#8C2D19" text-anchor="middle">PZAS</text>
+            <rect x="380" y="0" width="62" height="74" fill="rgba(140, 45, 25, 0.14)" stroke="#8C2D19" stroke-width="2" stroke-dasharray="3 3" rx="2"/>
+            <text x="411" y="24" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19" text-anchor="middle">VACÍO</text>
+            <text x="411" y="42" font-family="monospace, sans-serif" font-size="9" font-weight="800" fill="#8C2D19" text-anchor="middle">-380</text>
+            <text x="411" y="58" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#8C2D19" text-anchor="middle">PIEZAS</text>
 
             <!-- Bottom pallets -->
-            <rect x="0" y="50" width="38" height="46" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <rect x="44" y="50" width="38" height="46" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <rect x="88" y="50" width="38" height="46" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <rect x="132" y="50" width="38" height="46" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <rect x="176" y="50" width="38" height="46" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <rect x="220" y="50" width="38" height="46" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <rect x="264" y="50" width="38" height="46" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <rect x="308" y="50" width="38" height="46" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <rect x="352" y="50" width="38" height="46" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
-            <text x="180" y="77" font-family="system-ui, sans-serif" font-size="8.5" font-weight="700" fill="#2D4A22" text-anchor="middle">4,620 PIEZAS EMBALADAS &bull; CONFORMIDAD Y EMBALAJE OK</text>
+            <rect x="0" y="40" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="18" y="61" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
+            <rect x="42" y="40" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="60" y="61" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
+            <rect x="84" y="40" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="102" y="61" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
+            <rect x="126" y="40" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="144" y="61" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
+            <rect x="168" y="40" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="186" y="61" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
+            <rect x="210" y="40" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="228" y="61" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
+            <rect x="252" y="40" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="270" y="61" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
+            <rect x="294" y="40" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="312" y="61" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
+            <rect x="336" y="40" width="36" height="34" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1.2" rx="2"/>
+            <text x="354" y="61" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#2D4A22" text-anchor="middle">OK</text>
+
+            <!-- Dedicated Non-colliding Callout Pill for 4,620 PZAS -->
+            <rect x="0" y="82" width="372" height="22" fill="rgba(45, 74, 34, 0.12)" stroke="#2D4A22" stroke-width="1" rx="3"/>
+            <text x="186" y="97" font-family="system-ui, sans-serif" font-size="7.8" font-weight="800" fill="#2D4A22" text-anchor="middle">4,620 PZAS EMBALADAS (18 PALLETS CONFORMES)</text>
           </g>
 
           <!-- Chassis Wheels -->
-          <circle cx="80" cy="148" r="14" fill="#2C2420"/>
-          <circle cx="80" cy="148" r="6" fill="#C1B6A3"/>
-          <circle cx="120" cy="148" r="14" fill="#2C2420"/>
-          <circle cx="120" cy="148" r="6" fill="#C1B6A3"/>
-          <circle cx="360" cy="148" r="14" fill="#2C2420"/>
-          <circle cx="360" cy="148" r="6" fill="#C1B6A3"/>
-          <circle cx="400" cy="148" r="14" fill="#2C2420"/>
-          <circle cx="400" cy="148" r="6" fill="#C1B6A3"/>
+          <circle cx="80" cy="172" r="14" fill="#2C2420"/>
+          <circle cx="80" cy="172" r="6" fill="#C1B6A3"/>
+          <circle cx="120" cy="172" r="14" fill="#2C2420"/>
+          <circle cx="120" cy="172" r="6" fill="#C1B6A3"/>
+          <circle cx="360" cy="172" r="14" fill="#2C2420"/>
+          <circle cx="360" cy="172" r="6" fill="#C1B6A3"/>
+          <circle cx="400" cy="172" r="14" fill="#2C2420"/>
+          <circle cx="400" cy="172" r="6" fill="#C1B6A3"/>
         </g>
 
         <!-- Staging and countdown -->
-        <g transform="translate(510, 58)">
-          <polygon points="0 80, 40 76, 40 95, 0 95" fill="#C1B6A3" stroke="#2C2420" stroke-width="1.5"/>
-          <rect x="40" y="76" width="180" height="74" fill="#E1DACA" stroke="#2C2420" stroke-width="1.5" rx="2"/>
-          <text x="130" y="96" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420" text-anchor="middle">MUELLE INTERIOR</text>
-          <text x="130" y="110" font-family="system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#574C43" text-anchor="middle">Puesto de Inspección Final</text>
+        <g transform="translate(520, 56)">
+          <rect x="0" y="0" width="200" height="64" fill="#F5F5EB" stroke="#8C2D19" stroke-width="1.5" rx="4"/>
+          <text x="100" y="20" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19" text-anchor="middle">CUENTA REGRESIVA</text>
+          <text x="100" y="38" font-family="monospace, sans-serif" font-size="13" font-weight="800" fill="#2C2420" text-anchor="middle">60 MINUTOS</text>
+          <text x="100" y="52" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#786B62" text-anchor="middle">Límite precinto: 05:30 hrs</text>
 
-          <rect x="56" y="118" width="46" height="24" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.5" rx="2"/>
-          <text x="79" y="133" font-family="monospace, sans-serif" font-size="7" font-weight="700" fill="#8C2D19" text-anchor="middle">LOTE 380</text>
-          <circle cx="106" cy="138" r="4" fill="#2C2420"/>
-
-          <g transform="translate(50, 0)">
-            <rect x="0" y="0" width="160" height="54" fill="#F5F5EB" stroke="#8C2D19" stroke-width="1.5" rx="4"/>
-            <text x="80" y="18" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19" text-anchor="middle">CUENTA REGRESIVA</text>
-            <text x="80" y="34" font-family="monospace, sans-serif" font-size="12" font-weight="800" fill="#2C2420" text-anchor="middle">60 MINUTOS</text>
-            <text x="80" y="47" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#786B62" text-anchor="middle">Límite precinto: 05:30 hrs</text>
+          <g transform="translate(0, 74)">
+            <rect x="0" y="0" width="200" height="74" fill="#E1DACA" stroke="#2C2420" stroke-width="1.5" rx="3"/>
+            <text x="100" y="22" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#2C2420" text-anchor="middle">MUELLE INTERIOR</text>
+            <text x="100" y="36" font-family="system-ui, sans-serif" font-size="7.5" font-weight="600" fill="#574C43" text-anchor="middle">Inspección y Estiba Final</text>
+            
+            <rect x="25" y="46" width="150" height="20" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.2" rx="3"/>
+            <text x="100" y="60" font-family="monospace, sans-serif" font-size="7.5" font-weight="700" fill="#8C2D19" text-anchor="middle">LOTE PENDIENTE: 380</text>
           </g>
         </g>
 
         <!-- Progress bar -->
-        <g transform="translate(30, 212)">
-          <rect x="0" y="0" width="480" height="18" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1" rx="4"/>
-          <rect x="0" y="0" width="443" height="18" fill="#B3907A" stroke="#B3907A" stroke-width="1" rx="4"/>
-          <text x="240" y="13" font-family="monospace, sans-serif" font-size="8.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">4,620 / 5,000 PZAS (92.4%) &bull; FALTAN 380</text>
+        <g transform="translate(30, 244)">
+          <rect x="0" y="0" width="470" height="20" fill="#E1DACA" stroke="#C1B6A3" stroke-width="1" rx="4"/>
+          <rect x="0" y="0" width="434" height="20" fill="#B3907A" stroke="#B3907A" stroke-width="1" rx="4"/>
+          <text x="235" y="14" font-family="monospace, sans-serif" font-size="8.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">4,620 / 5,000 PZAS (92.4%) &bull; FALTAN 380</text>
 
-          <rect x="495" y="0" width="205" height="18" fill="rgba(140, 45, 25, 0.12)" stroke="#8C2D19" stroke-width="1" rx="4"/>
-          <text x="597" y="13" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#8C2D19" text-anchor="middle">MULTA EN RIESGO: 25,000 USD</text>
+          <rect x="500" y="0" width="220" height="20" fill="rgba(140, 45, 25, 0.12)" stroke="#8C2D19" stroke-width="1" rx="4"/>
+          <text x="610" y="14" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#8C2D19" text-anchor="middle">MULTA EN RIESGO: 25,000 USD</text>
         </g>
       </svg>`;
     }
@@ -2961,10 +3032,10 @@
       const clampedX = Math.max(1, Math.min(9, peopleScore));
       const clampedY = Math.max(1, Math.min(9, taskScore));
 
-      const originX = 70;
+      const originX = 58;
       const originY = 370;
-      const gridWidth = 430;
-      const gridHeight = 330;
+      const gridWidth = 432;
+      const gridHeight = 320;
 
       const plotX = originX + ((clampedX - 1) / 8) * gridWidth;
       const plotY = originY - ((clampedY - 1) / 8) * gridHeight;
@@ -2978,79 +3049,94 @@
           <line x1="${gx}" y1="${originY}" x2="${gx}" y2="${originY - gridHeight}" ${strokeStyle}/>
           <text x="${gx}" y="${originY + 16}" font-family="monospace, sans-serif" font-size="9" font-weight="700" fill="#574C43" text-anchor="middle">${i}</text>
           <line x1="${originX}" y1="${gy}" x2="${originX + gridWidth}" y2="${gy}" ${strokeStyle}/>
-          <text x="${originX - 12}" y="${gy + 4}" font-family="monospace, sans-serif" font-size="9" font-weight="700" fill="#574C43" text-anchor="end">${i}</text>
+          <text x="${originX - 10}" y="${gy + 3}" font-family="monospace, sans-serif" font-size="9" font-weight="700" fill="#574C43" text-anchor="end">${i}</text>
         `;
       }).join('');
 
-      return `<svg viewBox="0 0 540 430" width="100%" height="auto" class="managerial-grid-svg" xmlns="http://www.w3.org/2000/svg">
-        <rect width="540" height="430" fill="#F5F5EB" rx="8"/>
+      // Determine tag position to avoid overflowing canvas or colliding with borders
+      const isNearTop = plotY < (originY - gridHeight + 50);
+      const tagY = isNearTop ? (plotY + 16) : (plotY - 30);
+      const tagX = Math.min(originX + gridWidth - 118, Math.max(originX + 6, plotX - 58));
+      const arrowPath = isNearTop
+        ? `<polygon points="${plotX} ${plotY + 7}, ${plotX - 4} ${plotY + 16}, ${plotX + 4} ${plotY + 16}" fill="#2C2420"/>`
+        : `<polygon points="${plotX} ${plotY - 7}, ${plotX - 4} ${plotY - 16}, ${plotX + 4} ${plotY - 16}" fill="#2C2420"/>`;
 
-        <!-- Quadrant Tints -->
-        <rect x="${originX}" y="${originY - gridHeight}" width="${gridWidth / 2}" height="${gridHeight / 2}" fill="#EFE7DA" fill-opacity="0.8"/>
-        <rect x="${originX + gridWidth / 2}" y="${originY - gridHeight}" width="${gridWidth / 2}" height="${gridHeight / 2}" fill="rgba(45, 74, 34, 0.08)"/>
-        <rect x="${originX}" y="${originY - gridHeight / 2}" width="${gridWidth / 2}" height="${gridHeight / 2}" fill="rgba(193, 182, 163, 0.18)"/>
-        <rect x="${originX + gridWidth / 2}" y="${originY - gridHeight / 2}" width="${gridWidth / 2}" height="${gridHeight / 2}" fill="rgba(146, 64, 14, 0.08)"/>
+      return `<svg viewBox="0 0 520 440" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" class="managerial-grid-svg" xmlns="http://www.w3.org/2000/svg">
+        <rect width="520" height="440" fill="#F5F5EB" rx="8"/>
+
+        <!-- Quadrant Translucent Tints (Subtle 5-7% opacity) -->
+        <rect x="${originX}" y="${originY - gridHeight}" width="${gridWidth / 2}" height="${gridHeight / 2}" fill="#8C2D19" fill-opacity="0.04"/>
+        <rect x="${originX + gridWidth / 2}" y="${originY - gridHeight}" width="${gridWidth / 2}" height="${gridHeight / 2}" fill="#2D4A22" fill-opacity="0.06"/>
+        <rect x="${originX}" y="${originY - gridHeight / 2}" width="${gridWidth / 2}" height="${gridHeight / 2}" fill="#C1B6A3" fill-opacity="0.12"/>
+        <rect x="${originX + gridWidth / 2}" y="${originY - gridHeight / 2}" width="${gridWidth / 2}" height="${gridHeight / 2}" fill="#92400E" fill-opacity="0.05"/>
 
         <!-- Outer Frame -->
         <rect x="${originX}" y="${originY - gridHeight}" width="${gridWidth}" height="${gridHeight}" fill="none" stroke="#C1B6A3" stroke-width="1.75"/>
 
         ${gridLines}
 
-        <!-- Benchmarks -->
-        <g transform="translate(${originX + 10}, ${originY - gridHeight + 14})">
-          <rect x="0" y="0" width="175" height="32" fill="#F5F5EB" stroke="#8C2D19" stroke-width="1.2" rx="4"/>
-          <text x="8" y="14" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#8C2D19">ESTILO 9.1: AUTORIDAD Y TAREA</text>
-          <text x="8" y="25" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#574C43">Taylorismo &bull; Coerción & Control</text>
+        <!-- Benchmark Quadrant Badges (Clean, Translucent, Perfectly Padded) -->
+        <g transform="translate(${originX + 8}, ${originY - gridHeight + 8})">
+          <rect x="0" y="0" width="150" height="28" fill="#F5F5EB" fill-opacity="0.88" stroke="#8C2D19" stroke-width="1.2" rx="4"/>
+          <text x="8" y="12" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#8C2D19">9.1 AUTORIDAD-TAREA</text>
+          <text x="8" y="22" font-family="system-ui, sans-serif" font-size="6.8" font-weight="600" fill="#574C43">Taylorismo &bull; Coerción</text>
         </g>
 
-        <g transform="translate(${originX + gridWidth - 185}, ${originY - gridHeight + 14})">
-          <rect x="0" y="0" width="175" height="32" fill="#F5F5EB" stroke="#2D4A22" stroke-width="1.2" rx="4"/>
-          <text x="8" y="14" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#2D4A22">ESTILO 9.9: GESTIÓN DE EQUIPO</text>
-          <text x="8" y="25" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#574C43">Sinergia Sociotécnica &bull; Cohesión</text>
+        <g transform="translate(${originX + gridWidth - 158}, ${originY - gridHeight + 8})">
+          <rect x="0" y="0" width="150" height="28" fill="#F5F5EB" fill-opacity="0.88" stroke="#2D4A22" stroke-width="1.2" rx="4"/>
+          <text x="8" y="12" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#2D4A22">9.9 GESTIÓN DE EQUIPO</text>
+          <text x="8" y="22" font-family="system-ui, sans-serif" font-size="6.8" font-weight="600" fill="#574C43">Sinergia Sociotécnica</text>
         </g>
 
-        <g transform="translate(${originX + 10}, ${originY - 46})">
-          <rect x="0" y="0" width="175" height="32" fill="#F5F5EB" stroke="#786B62" stroke-width="1.2" rx="4"/>
-          <text x="8" y="14" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#786B62">ESTILO 1.1: EMPOBRECIDO</text>
-          <text x="8" y="25" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#574C43">Laissez-Faire &bull; Anomia Operativa</text>
+        <g transform="translate(${originX + 8}, ${originY - 36})">
+          <rect x="0" y="0" width="150" height="28" fill="#F5F5EB" fill-opacity="0.88" stroke="#786B62" stroke-width="1.2" rx="4"/>
+          <text x="8" y="12" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#786B62">1.1 EMPOBRECIDO</text>
+          <text x="8" y="22" font-family="system-ui, sans-serif" font-size="6.8" font-weight="600" fill="#574C43">Laissez-Faire &bull; Anomia</text>
         </g>
 
-        <g transform="translate(${originX + gridWidth - 185}, ${originY - 46})">
-          <rect x="0" y="0" width="175" height="32" fill="#F5F5EB" stroke="#92400E" stroke-width="1.2" rx="4"/>
-          <text x="8" y="14" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#92400E">ESTILO 1.9: CLUB CAMPESTRE</text>
-          <text x="8" y="25" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#574C43">Paternalismo &bull; Sin Exigencia</text>
+        <g transform="translate(${originX + gridWidth - 158}, ${originY - 36})">
+          <rect x="0" y="0" width="150" height="28" fill="#F5F5EB" fill-opacity="0.88" stroke="#92400E" stroke-width="1.2" rx="4"/>
+          <text x="8" y="12" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#92400E">1.9 CLUB CAMPESTRE</text>
+          <text x="8" y="22" font-family="system-ui, sans-serif" font-size="6.8" font-weight="600" fill="#574C43">Paternalismo &bull; Sin Control</text>
         </g>
 
-        <g transform="translate(${originX + gridWidth / 2 - 75}, ${originY - gridHeight / 2 - 16})">
-          <rect x="0" y="0" width="150" height="32" fill="#F5F5EB" stroke="#B3907A" stroke-width="1.2" stroke-dasharray="3 2" rx="4"/>
-          <text x="75" y="14" font-family="system-ui, sans-serif" font-size="8" font-weight="800" fill="#B3907A" text-anchor="middle">ESTILO 5.5: PUNTO MEDIO</text>
-          <text x="75" y="25" font-family="system-ui, sans-serif" font-size="7" font-weight="600" fill="#574C43" text-anchor="middle">Transaccional / Inconsistente</text>
+        <g transform="translate(${originX + gridWidth / 2 - 65}, ${originY - gridHeight / 2 - 14})">
+          <rect x="0" y="0" width="130" height="28" fill="#F5F5EB" fill-opacity="0.92" stroke="#B3907A" stroke-width="1.2" stroke-dasharray="3 2" rx="4"/>
+          <text x="65" y="12" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#B3907A" text-anchor="middle">5.5 PUNTO MEDIO</text>
+          <text x="65" y="22" font-family="system-ui, sans-serif" font-size="6.8" font-weight="600" fill="#574C43" text-anchor="middle">Transaccional</text>
         </g>
 
         <!-- Axes Titles -->
-        <text x="${originX + gridWidth / 2}" y="${originY + 36}" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#2C2420" text-anchor="middle" letter-spacing="0.5">
-          INTERÉS POR LAS PERSONAS Y RELACIONES SOCIALES (EJE X &rarr;)
+        <text x="${originX + gridWidth / 2}" y="${originY + 38}" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#2C2420" text-anchor="middle" letter-spacing="0.5">
+          INTERÉS POR LAS PERSONAS Y FACTOR HUMANO (EJE X &rarr;)
         </text>
 
-        <g transform="translate(20, ${originY - gridHeight / 2}) rotate(-90)">
-          <text x="0" y="0" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#2C2420" text-anchor="middle" letter-spacing="0.5">
-            &uarr; INTERÉS POR LA TAREA Y CONTROL TÉCNICO (EJE Y)
+        <g transform="translate(16, ${originY - gridHeight / 2}) rotate(-90)">
+          <text x="0" y="0" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#2C2420" text-anchor="middle" letter-spacing="0.5">
+            &uarr; INTERÉS POR LA PRODUCCIÓN Y CONTROL TÉCNICO (EJE Y)
           </text>
         </g>
 
-        <!-- Dynamic Plotted Point -->
+        <!-- Dynamic Animated Player Pin & Radar Beacon (Non-covering) -->
         <g class="student-plot-node">
-          <circle cx="${plotX}" cy="${plotY}" r="20" fill="#B3907A" fill-opacity="0.2">
-            <animate attributeName="r" values="10;22;10" dur="2s" repeatCount="indefinite"/>
-            <animate attributeName="fill-opacity" values="0.35;0.05;0.35" dur="2s" repeatCount="indefinite"/>
+          <!-- Expanding Radar Waves -->
+          <circle cx="${plotX}" cy="${plotY}" r="22" fill="#B3907A" fill-opacity="0.25">
+            <animate attributeName="r" values="8;24;8" dur="2.2s" repeatCount="indefinite"/>
+            <animate attributeName="fill-opacity" values="0.35;0.05;0.35" dur="2.2s" repeatCount="indefinite"/>
           </circle>
-          <circle cx="${plotX}" cy="${plotY}" r="8" fill="#B3907A" stroke="#2C2420" stroke-width="2.5"/>
-          <circle cx="${plotX}" cy="${plotY}" r="3" fill="#FFFFFF"/>
+          <circle cx="${plotX}" cy="${plotY}" r="15" fill="none" stroke="#8C2D19" stroke-width="2" stroke-opacity="0.8">
+            <animate attributeName="r" values="5;20;5" dur="2.2s" repeatCount="indefinite"/>
+            <animate attributeName="stroke-opacity" values="0.9;0.1;0.9" dur="2.2s" repeatCount="indefinite"/>
+          </circle>
 
-          <g transform="translate(${Math.min(originX + gridWidth - 140, Math.max(originX + 10, plotX - 65))}, ${plotY > originY - gridHeight + 70 ? plotY - 34 : plotY + 16})">
-            <rect x="0" y="0" width="130" height="24" fill="#2C2420" rx="4"/>
-            <text x="65" y="16" font-family="monospace, sans-serif" font-size="8.5" font-weight="800" fill="#F5F5EB" text-anchor="middle">SU POSICIÓN: (${clampedX.toFixed(1)}, ${clampedY.toFixed(1)})</text>
-          </g>
+          <!-- Precision Beacon Pin -->
+          <circle cx="${plotX}" cy="${plotY}" r="6.5" fill="#8C2D19" stroke="#FFFFFF" stroke-width="2"/>
+          <circle cx="${plotX}" cy="${plotY}" r="2" fill="#FFFFFF"/>
+
+          <!-- Sleek Floating Callout Pill (Unobtrusive) -->
+          ${arrowPath}
+          <rect x="${tagX}" y="${tagY}" width="116" height="20" rx="10" fill="#2C2420" fill-opacity="0.92" stroke="#B3907A" stroke-width="1"/>
+          <text x="${tagX + 58}" y="${tagY + 13}" font-family="monospace, sans-serif" font-size="8" font-weight="700" fill="#F5F5EB" text-anchor="middle">Tu Posición (${clampedX.toFixed(1)}, ${clampedY.toFixed(1)})</text>
         </g>
       </svg>`;
     }
