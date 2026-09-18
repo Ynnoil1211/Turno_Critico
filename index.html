@@ -1511,6 +1511,86 @@
       height: auto;
     }
 
+    /* MANAGERIAL CONTEXT QUESTION BANNER (PREGUNTA CLAVE DE DECISIÓN) */
+    .front-context-question-card {
+      background: linear-gradient(135deg, var(--bg-panel) 0%, rgba(225, 218, 202, 0.7) 100%);
+      border: 1.5px solid var(--border-highlight);
+      border-left: 5px solid var(--accent-primary);
+      border-radius: var(--radius-lg);
+      padding: 1.35rem 1.6rem;
+      margin: 1.5rem 0 1.35rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+    }
+
+    .context-question-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .context-question-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--bg-card);
+      border: 1px solid var(--border-highlight);
+      padding: 0.22rem 0.65rem;
+      border-radius: var(--radius-full);
+      color: var(--text-primary);
+    }
+
+    .context-question-pill svg {
+      color: var(--accent-primary);
+      flex-shrink: 0;
+    }
+
+    .context-question-subtag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .context-question-body {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+    }
+
+    .context-question-icon-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1.2px solid var(--border-highlight);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-primary);
+      flex-shrink: 0;
+      margin-top: 2px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .context-question-text {
+      font-size: 1.14rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      flex: 1;
+    }
+
     /* FIGURA 5: MANAGERIAL GRID (BLAKE & MOUTON) */
     .managerial-grid-section {
       background: var(--bg-panel);
@@ -1651,10 +1731,29 @@
       }
       .blueprint-card,
       .front-schematic-card,
+      .front-context-question-card,
       .managerial-grid-section {
-        padding: 0.75rem 0.5rem;
+        padding: 0.75rem 0.65rem;
         margin: 1rem 0;
         border-radius: var(--radius-md);
+      }
+      .front-context-question-card {
+        padding: 1rem 0.85rem;
+      }
+      .context-question-body {
+        gap: 0.65rem;
+      }
+      .context-question-icon-circle {
+        width: 32px;
+        height: 32px;
+      }
+      .context-question-icon-circle svg {
+        width: 17px;
+        height: 17px;
+      }
+      .context-question-text {
+        font-size: 0.98rem;
+        line-height: 1.4;
       }
       .managerial-grid-chart-card {
         padding: 0.5rem 0.35rem;
@@ -2007,6 +2106,29 @@
         </div>
         <div class="front-schematic-svg-wrap" id="schematicSvgContainer">
           <!-- Dynamically populated per front -->
+        </div>
+      </div>
+
+      <!-- Managerial Context Question Framing Banner -->
+      <div class="front-context-question-card" id="frontContextQuestionCard">
+        <div class="context-question-badge-row">
+          <span class="context-question-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Pregunta Clave de Decisión
+          </span>
+          <span class="context-question-subtag" id="contextQuestionSubtag">Dilema Gerencial</span>
+        </div>
+        <div class="context-question-body">
+          <div class="context-question-icon-circle" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="context-question-text" id="frontContextQuestionText">
+            ¿Cómo responderás ante la resistencia pasiva de los operarios veteranos y la exigencia de mano dura de la dirección?
+          </h3>
         </div>
       </div>
 
@@ -3285,6 +3407,7 @@
         badge: 'Frente 1: Organización',
         title: 'Reorganización de Cuadrillas y Liderazgo Informal',
         description: 'La sirena marca el arranque del turno. Los operarios no ocupan sus puestos: forman corrillos tensos junto a Don Carlos en el torno #6 e ignoran al capataz formal.',
+        contextQuestion: '¿Cómo responderás ante la resistencia pasiva de los operarios veteranos y la exigencia de mano dura de la dirección?',
         options: {
           A: {
             paradigm: 'taylor',
@@ -3327,6 +3450,7 @@
         badge: 'Frente 2: Incidencia Técnica',
         title: 'Incidencia Mecánica en la Rectificadora #4',
         description: 'La rectificadora cilíndrica #4 vibra y emite un zumbido agudo en el cabezal rotatorio. Si el husillo se traba por fricción térmica, toda la nave colapsará.',
+        contextQuestion: '¿Cómo intervendrás ante la falla crítica de la rectificadora principal para no detener la línea sin quebrar la seguridad del taller?',
         reactiveCheck: (state) => {
           const prevParadigm = state.history[0]?.paradigm;
           if (prevParadigm === 'taylor') {
@@ -3379,6 +3503,7 @@
         badge: 'Frente 3: Fatiga Nocturna',
         title: 'Fatiga Nocturna y Rebabas en Casquillos de Bronce',
         description: 'Son las 02:00 de la madrugada y arrecia el frío. En control de calidad detectan rebabas cortantes en 80 casquillos; el cansancio se nota en toda la nave.',
+        contextQuestion: '¿Qué estrategia aplicarás para gestionar la fatiga del turno de madrugada y el descontento en la calidad sin desarticular al equipo?',
         reactiveCheck: (state) => {
           const countTaylor = state.history.filter(h => h.paradigm === 'taylor').length;
           const countMayo = state.history.filter(h => h.paradigm === 'mayo').length;
@@ -3432,6 +3557,7 @@
         badge: 'Frente 4: El Clímax',
         title: 'Camión en Muelle y Faltante Crítico de 380 Piezas',
         description: '04:30 hrs. Los faros del camión de transporte iluminan la rampa. A las 05:30 debe precintar el contenedor y faltan 380 piezas para evitar la multa de 25,000 USD.',
+        contextQuestion: '¿Cuál será tu directriz final para asegurar las últimas 380 piezas antes de las 05:30 hrs y definir el destino de la planta?',
         reactiveCheck: (state) => {
           const moral = state.moral;
           if (moral >= 75) {
@@ -3591,6 +3717,8 @@
           frontTimeTag: document.getElementById('frontTimeTag'),
           frontTitle: document.getElementById('frontTitle'),
           frontDescription: document.getElementById('frontDescription'),
+          frontContextQuestionText: document.getElementById('frontContextQuestionText'),
+          contextQuestionSubtag: document.getElementById('contextQuestionSubtag'),
           reactiveCallout: document.getElementById('reactiveCallout'),
           reactiveCalloutText: document.getElementById('reactiveCalloutText'),
           optionsGrid: document.getElementById('optionsGrid'),
@@ -3896,6 +4024,10 @@
         this.dom.frontTimeTag.textContent = frontData.time;
         this.dom.frontTitle.textContent = frontData.title;
         this.dom.frontDescription.textContent = frontData.description;
+
+        if (this.dom.frontContextQuestionText && frontData.contextQuestion) {
+          this.dom.frontContextQuestionText.textContent = frontData.contextQuestion;
+        }
 
         if (typeof frontData.reactiveCheck === 'function') {
           const reactiveText = frontData.reactiveCheck(this.state);
